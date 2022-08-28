@@ -7,7 +7,6 @@ public class Fruits : MonoBehaviour
     private SpriteRenderer sr;
     private CircleCollider2D cir;
     
-
     public GameObject collected;
     public int Score;
 
@@ -34,9 +33,7 @@ public class Fruits : MonoBehaviour
             cir.enabled = false;
             collected.SetActive(true);
 
-            GameController.instance.totalScore += Score;
-
-
+          
             Destroy(gameObject,0.25f);
         }
 

@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rig;
     Transform trans;
 
+    public Text tx;
     [SerializeField] float speed, jumpForce, x, y;
     [SerializeField] bool isJup, isDJump;
     //[SerializeField] Text Text;
 
+    public int totalScore;
     // Start is called before the first frame update
     void Start()
     {
@@ -120,5 +122,15 @@ public class PlayerMovement : MonoBehaviour
             isJup = true;
         }
     }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Fruit")
+        {
+            totalScore += 1;
+            tx.text = totalScore.ToString();
+        }
+
+    }
+
 }
 

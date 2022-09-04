@@ -15,7 +15,7 @@ public class Fruits : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         cir = GetComponent<CircleCollider2D>();
-
+        PlayerMovement.fruits++;
         
     }
 

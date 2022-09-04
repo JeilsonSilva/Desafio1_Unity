@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class PlayerMovement : MonoBehaviour
     Animator Animation;
     Rigidbody2D rig;
     Transform trans;
+    [SerializeField] Animator anim;
 
     public Text tx;
     [SerializeField] float speed, jumpForce, x, y;
     [SerializeField] bool isJup, isDJump;
-    //[SerializeField] Text Text;
+    public static int fruits = 0;
 
     public int totalScore;
     // Start is called before the first frame update
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
         trans = GetComponent<Transform>();
 
+       
+
     }
 
 
@@ -36,8 +40,17 @@ public class PlayerMovement : MonoBehaviour
         Animations();
         Move();
         Jump();
+        PassarNivel();
 
+    }
 
+    private void PassarNivel()
+    {
+        if (fruits == totalScore) 
+        {
+            anim.SetBool("motion", true);
+
+        }
     }
 
     private void Jump()
@@ -112,6 +125,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             isJup = false;
+        }
+
+        if (collision.gameObject.layer == 6 && anim.GetBool("motion"))
+        {
+            SceneManager.LoadScene(1);
         }
     }
 
